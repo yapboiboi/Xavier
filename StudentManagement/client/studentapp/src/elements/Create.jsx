@@ -28,7 +28,7 @@ function Create() {
       <div className='row justify-content-center'>
         <h3 className='text-center text-white'>Add Student</h3>
         <div className='d-flex justify-content-end'>
-            <Link to='/' className='btn btn-primary'>Home</Link>
+            <Link to='/' className='btn btn-success'>Home</Link>
         </div>
         <form onSubmit={handleSubmit}>
             <div className='form-group'>

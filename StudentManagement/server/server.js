@@ -35,6 +35,24 @@ app.post("/add_user", (req, res) => {
     })
 })
 
+app.get("/students", (req, res) => {
+    const sql = "SELECT * FROM student_details";
+    db.query(sql, (err, result) => {
+        if(err) return res.json({message:"Something went wrong " + err})
+        return res.json(result)
+    })
+})
+
+app.get("/get_students/:id", (req, res) => {
+    const id = req.params.id;
+    console.log("Requested ID:", id); 
+    const sql = "SELECT * FROM student_details WHERE id = ?";
+    db.query(sql, [id], (err, result) => {
+        if(err) return res.json({message:"Something went wrong " + err})
+        return res.json(result)
+    })
+})
+
 app.listen(port, () => {
     console.log('listeningon port 5000');
 });
