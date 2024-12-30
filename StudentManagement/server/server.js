@@ -53,6 +53,22 @@ app.get("/get_students/:id", (req, res) => {
     })
 })
 
+app.post("/edit_student/:id", (req, res) => {
+    const id = req.params.id;
+    const sql = "UPDATE student_details SET `name` = ?, `email` = ?, `age` = ?, `gender` = ? WHERE id = ?";
+    const values = [
+        req.body.name,
+        req.body.email,
+        req.body.age, 
+        req.body.gender,
+        id
+    ]
+    db.query(sql, values, (err, result) => {
+        if(err) return res.json({message:"Something went wrong " + err})
+        return res.json({message: "Data updated successfully"})
+    })
+})
+
 app.listen(port, () => {
     console.log('listeningon port 5000');
 });
