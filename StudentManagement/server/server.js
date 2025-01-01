@@ -21,6 +21,18 @@ const db = mysql.createConnection({
     database: "students",
 })
 
+app.post("/login", (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    const sql = "SELECT * FROM login WHERE email = ? AND password = ?";
+    db.query(sql, [email, password], (err, result) => {
+        if(err) return res.json({message:"Login failed " + err})
+        if(result.length === 0) return res.json({message:"Invalid email or password"})
+        return res.json({message: "Login successful", user: result[0]})
+    })
+    console.log(email  + " " + password);
+})
+
 app.post("/add_user", (req, res) => {
     const sql = "INSERT INTO student_details (`name`, `email`, `age`, `gender`) VALUES (?)";
     const values = [
