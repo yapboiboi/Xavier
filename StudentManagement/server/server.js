@@ -69,6 +69,43 @@ app.post("/edit_student/:id", (req, res) => {
     })
 })
 
+// app.delete("/delete/:id", (req, res) => {
+//     const resetSql = "ALTER TABLE student_details AUTO_INCREMENT = 1";
+//     const id = req.params.id;
+//     const sql = "DELETE FROM student_details WHERE id = ?";
+//     db.query(sql, [id], (err, result) => {
+//         if(err) return res.json({message:"Something went wrong " + err})
+        
+//         db.query(resetSql, (err, result) => {
+//                 if (err) return res.json({ message: "Error resetting ID: " + err });
+                
+//                 res.json({ message: "IDs reset successfully" });
+//             });
+//         return res.json({message: "Data deleted successfully"})
+//     })
+// })
+
+app.delete("/delete/:id", (req, res) => {
+    const resetSql = "ALTER TABLE student_details AUTO_INCREMENT = 1";
+    const id = req.params.id;
+    const sql = "DELETE FROM student_details WHERE id = ?";
+    
+    db.query(sql, [id], (err, result) => {
+        if (err) {
+            return res.json({ message: "Something went wrong: " + err });
+        }
+        
+        db.query(resetSql, (err) => {
+            if (err) {
+                return res.json({ message: "Error resetting ID: " + err });
+            }
+            
+            res.json({ message: "Data deleted and IDs reset successfully" });
+        });
+    });
+});
+
+
 app.listen(port, () => {
     console.log('listeningon port 5000');
 });

@@ -24,28 +24,28 @@ function Create() {
   }
 
   return (
-    <div className="container vh-100 vw-100 bg-primary" >
+    <div className="container vh-100 vw-100 bg-white" >
       <div className='row justify-content-center'>
-        <h3 className='text-center text-white'>Add Student</h3>
+        <h3 className='text-center text-black'>Add Student</h3>
         <div className='d-flex justify-content-end'>
             <Link to='/' className='btn btn-success'>Home</Link>
         </div>
         <form onSubmit={handleSubmit}>
             <div className='form-group'>
-                <label className='text-white'>Name</label>
+                <label className='text-black'>Name</label>
                 <input type='text' className='form-control' required 
                 onChange={(e) => setValues({...values, name: e.target.value})}/>
             </div>
             <div className='form-group'>
-                <label className='text-white'>Email</label>
+                <label className='text-black'>Email</label>
                 <input type='email' className='form-control' required onChange={(e) => setValues({...values, email: e.target.value})}/>
             </div>
             <div className='form-group'>
-                <label className='text-white'>Age</label>
+                <label className='text-black'>Age</label>
                 <input type='number' className='form-control' required onChange={(e) => setValues({...values, age: e.target.value})}/>
             </div>
             <div className='form-group'>
-                <label className='text-white'>Gender</label>
+                <label className='text-black'>Gender</label>
                 <input type='text' className='form-control' required onChange={(e) => setValues({...values, gender: e.target.value})}/>
             </div> 
             <div className='form-group mt-3'>
